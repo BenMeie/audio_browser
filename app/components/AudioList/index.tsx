@@ -1,8 +1,10 @@
 'use client'
 
 import algoliasearch from "algoliasearch";
-import { Hits, InstantSearch, SearchBox } from "react-instantsearch";
+import { Hits, InfiniteHits, InstantSearch, SearchBox } from "react-instantsearch";
 import AudioCard from "../AudioCard";
+import 'instantsearch.css/themes/satellite.css';
+import './list.css'
 
 interface AudioListProps {
     // files: string[]

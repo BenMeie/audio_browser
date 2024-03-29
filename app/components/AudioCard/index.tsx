@@ -14,8 +14,7 @@ export default function AudioCard(props: any) {
     
     useEffect(() => {
         setAudio(new Howl({
-            src: ['audio/' + props.hit.name],
-            html5: true,
+            src: ['https://s3.us-west-1.amazonaws.com/crazycowmm.com/audio/' + encodeURI(props.hit.name)],
             onplay: () => {
                 if(runId.current) return;
                 runId.current = setInterval(() => {
@@ -44,10 +43,12 @@ export default function AudioCard(props: any) {
     return (
         <div className={styles.card}>
             <p className={styles.title}>{props.hit.name.substring(props.hit.name.lastIndexOf('/') + 1)}</p>
-            <button className={styles.button} onClick={() => {if(runId.current) return; audio.play()}}><Play /></button>
-            <button className={styles.button} onClick={() => {audio.pause()}}><Pause /></button>
-            <button className={styles.button} onClick={() => {audio.stop()}}><StopCircle /></button>
-            <progress className={styles.progress} max={audio.duration() * 10} value={timestamp} />
+            <div className={styles.controls}>
+                <button className={styles.button} onClick={() => {if(runId.current) return; audio.play()}}><Play /></button>
+                <button className={styles.button} onClick={() => {audio.pause()}}><Pause /></button>
+                <button className={styles.button} onClick={() => {audio.stop()}}><StopCircle /></button>
+                <progress className={styles.progress} max={audio.duration() * 10} value={timestamp} />
+            </div>
         </div>
     )
 }
