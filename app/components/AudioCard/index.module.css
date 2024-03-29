@@ -1,0 +1,28 @@
+.card {
+    background-color: #272727;
+    padding: 10px 20px;
+    color: white;
+    margin: 5px;
+}
+
+.title {
+    margin: 10px 5px;
+}
+
+.button {
+    border: 1px solid gray;
+    padding: 5px;
+    background-color: #2d2d2d;
+    color: white;
+    margin: 3px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #373737;
+}
+
+.progress {
+    width: 60%;
+    margin-left: 20px;
+}
