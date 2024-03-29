@@ -3,13 +3,16 @@
 import { Howl } from "howler"
 import { useEffect, useRef, useState } from "react"
 import styles from './index.module.css'
-import { Pause, Play, StopCircle } from "react-feather"
+import { Download, Pause, Play, StopCircle } from "react-feather"
+import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 
 export default function AudioCard(props: any) {
     const runId = useRef<NodeJS.Timeout>()
     const [timestamp, setTimestamp] = useState(0)
     const [audio, setAudio] = useState<Howl>()
+    const router = useRouter();
 
     
     useEffect(() => {
@@ -47,6 +50,7 @@ export default function AudioCard(props: any) {
                 <button className={styles.button} onClick={() => {if(runId.current) return; audio.play()}}><Play /></button>
                 <button className={styles.button} onClick={() => {audio.pause()}}><Pause /></button>
                 <button className={styles.button} onClick={() => {audio.stop()}}><StopCircle /></button>
+                <Link className={styles.button} href={'https://s3.us-west-1.amazonaws.com/crazycowmm.com/audio/' + encodeURI(props.hit.name)} download={props.hit.name}><Download /></Link>
                 <progress className={styles.progress} max={audio.duration() * 10} value={timestamp} />
             </div>
         </div>
